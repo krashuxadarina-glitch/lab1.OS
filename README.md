@@ -22,7 +22,6 @@
 ## 📚 1. Preliminary Preparation
 
 ### 🔡 Basic English Glossary
-```yaml
 - Virtual Machine (VM): Software emulation of a physical computer.
 - Virtualization: Technology for creating virtual computing resources.
 - Hypervisor: Software that manages VMs.
