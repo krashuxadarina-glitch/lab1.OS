@@ -1,44 +1,191 @@
-# 📋 REPORT: Laboratory Work №1
-**Course:** Operating Systems  
-**Topic:** Introduction to the Virtual Machine Environment and Features of the Linux Operating System  
-**Institution:** KYIV VOCATIONAL COLLEGE OF COMMUNICATION
+# Міністерство освіти і науки України  
+## Київський фаховий коледж зв'язку  
 
 ---
 
-## 👤 Student Information
-* **Student:** Ruda Daryna Serhiivna
-* **Group:** BIKS-33
-* **Teacher:** Sushanova Viktoriia Serhiivna
-* **Year:** 2026
+# Звіт  
+**Про виконання лабораторної роботи №1**  
+**Дисципліна:** Операційні системи  
+**Тема:** Знайомство з робочим середовищем віртуальних машин та особливостями операційної системи Linux  
+
+**Виконала:** Студентка групи БІКС-33  
+Руда Дарина Сергіївна  
+
+**Перевірив викладач:** Сушанова Вікторія Сергіївна  
+
+**Київ, 2026**
 
 ---
 
-## 🎯 Objectives
-1. Familiarization with different types of hypervisors and virtualization in OS.
-2. Overview of modern operating systems and their capabilities.
+## Мета роботи
+1. Знайомство з гіпервізорами різного типу та технологією віртуалізації при роботі з операційними системами.  
+2. Ознайомлення з основними видами сучасних ОС та короткий огляд їхніх можливостей.  
 
 ---
 
-## 📚 1. Preliminary Preparation
+## Завдання для попередньої підготовки
 
-### 🔡 Basic English Glossary
-- Virtual Machine (VM): Software emulation of a physical computer.
-- Virtualization: Technology for creating virtual computing resources.
-- Hypervisor: Software that manages VMs.
-- Type 1 (Bare-metal): Runs directly on hardware (e.g., Hyper-V, ESXi).
-- Type 2 (Hosted): Runs on top of a host OS (e.g., VirtualBox, VMware Player).
-- Host/Guest OS: The main system vs. the system inside the VM.
-⚙️ Hypervisor Types & Hyper-V (Variant 15)Hypervisor is specialized software for managing virtual machines.Hyper-V Components:Parent Partition: Management environment (Windows).Child Partitions: Where Guest OSs live.Virtual Switch: Networking for VMs.VHD/VHDX: Virtual disk formats.🛠 2. Execution Procedure2.1 Deployment Steps (VirtualBox)Install Oracle VirtualBox.Download Linux ISO (e.g., Ubuntu).Create VM (Allocate RAM & CPU).Create Virtual Hard Disk.Attach ISO and launch the installer.Complete OS setup & install Guest Additions.2.2 Hardware LimitationsFeature32-bit OS64-bit OSRAM SupportMax ~4 GB> 4 GB (Huge limits)CPU RequirementAny modern CPU64-bit CPU onlyVirtualizationSoftware onlyRequires Intel VT-x / AMD-V2.3 Installing GNOME/KDE (via Terminal)If you are in CLI mode, use these commands to install a GUI:Bash# Update repositories
+### 1. Словник базових англійських термінів
+- **Virtual Machine (VM)** — віртуальна машина; програмна імітація фізичного комп’ютера з власною ОС.  
+- **Virtualization** — віртуалізація; технологія створення та використання віртуальних обчислювальних ресурсів.  
+- **Hypervisor** — гіпервізор; ПЗ для створення, керування та запуску віртуальних машин.  
+- **Type 1 Hypervisor (Bare-metal)** — працює безпосередньо на апаратному забезпеченні без хостової ОС.  
+- **Type 2 Hypervisor (Hosted)** — працює поверх хостової ОС як програма.  
+- **Host Operating System** — хостова ОС, на якій запущено гіпервізор.  
+- **Guest Operating System** — гостьова ОС у віртуальній машині.  
+- **Virtual Disk** — віртуальний диск; файл, що імітує фізичний накопичувач.  
+
+---
+
+### 2. Гіпервізори та їх типи
+**Гіпервізор** — програмне забезпечення для створення, запуску та керування віртуальними машинами.  
+Розподіляє ресурси між кількома гостьовими ОС та ізолює їх.  
+
+**Типи гіпервізорів:**  
+- **Type 1 (bare-metal):** працює безпосередньо на апаратному забезпеченні; висока продуктивність; використовується на серверах.  
+- **Type 2 (hosted):** працює як програма на хост-ОС; зручний для навчання та тестування.  
+
+---
+
+### 2.2 Основні компоненти Hyper-V (варіант 15)
+- **Hyper-V Hypervisor** — базовий рівень віртуалізації, працює з апаратним забезпеченням.  
+- **Parent Partition** — ОС Windows для керування віртуальними машинами та ресурсами.  
+- **Child Partitions** — середовища для гостьових ОС.  
+- **Virtual Machine Management Service (VMMS)** — служба керування VM (створення, запуск, зупинка, налаштування).  
+- **Virtual Switch** — організація мережевої взаємодії між VM та фізичною мережею.  
+- **Integration Services** — драйвери та служби для покращення взаємодії гостьової ОС з гіпервізором.  
+- **Virtual Storage (VHD/VHDX)** — віртуальні жорсткі диски.  
+
+**Можливості Hyper-V:**  
+- Створення та керування кількома VM.  
+- Підтримка різних гостьових ОС (Windows, Linux).  
+- Ефективний розподіл CPU, RAM та дискових ресурсів.  
+- Ізоляція VM для безпеки.  
+- Знімки стану (checkpoints).  
+- Віртуалізація мережі.  
+- Висока продуктивність (безпосередня робота з апаратним забезпеченням).  
+- Інтеграція з Windows-інструментами адміністрування.  
+
+---
+
+## Хід роботи
+
+### 2.1 Етапи розгортання ОС на VirtualBox
+1. Встановлення VirtualBox на хостову ОС.  
+2. Завантаження ISO-образу Linux (наприклад, Ubuntu).  
+3. Створення нової VM:  
+   - вибір типу ОС та версії;  
+   - виділення RAM;  
+   - налаштування CPU.  
+4. Створення або підключення віртуального жорсткого диска (VHD/VHDX).  
+5. Підключення ISO як віртуального оптичного диска.  
+6. Запуск VM та старт інсталятора Linux.  
+7. Проходження стандартних етапів інсталяції.  
+8. Завершення інсталяції та перезавантаження VM.  
+9. Опціонально: встановлення **Guest Additions** для інтеграції з хостом.  
+
+---
+
+### 2.2 Апаратні обмеження для 32- та 64-бітних ОС
+**32-біт:**  
+- Підтримка практично будь-яким процесором.  
+- RAM до ~4 ГБ.  
+- Апаратна віртуалізація не обов’язкова.  
+
+**64-біт:**  
+- Потрібен 64-бітний процесор.  
+- Обов’язкова підтримка апаратної віртуалізації (Intel VT-x / AMD-V).  
+- Включення технології в BIOS/UEFI.  
+- Дозволяє більше 4 ГБ RAM.  
+
+---
+
+### 2.3 Встановлення Linux у текстовому режимі
+1. Завантаження з інсталяційного носія.  
+2. Вибір текстового (CLI) режиму.  
+3. Вибір мови та регіональних налаштувань.  
+4. Налаштування клавіатури.  
+5. Розбиття диска (авто/ручне).  
+6. Встановлення базових системних пакетів.  
+7. Налаштування користувача та пароля адміністратора.  
+8. Встановлення завантажувача (GRUB).  
+9. Перезавантаження системи.  
+
+---
+
+### 2.4 Встановлення графічних оболонок
+**GNOME (Ubuntu / Debian):**  
+```bash
 sudo apt update
-
-# Install GNOME
 sudo apt install gnome-shell gnome-session gnome-terminal
+KDE Plasma:
 
-# Install KDE Plasma
-sudo apt install kde-standard # Or kde-full for everything
-🖥️ 2.4 Graphical Interfaces (Variant 15)Xfce: Lightweight, stable, and fast. Perfect for low-end hardware.FVWM: Extremely flexible window manager for advanced users. Minimalist and fast.❓ 3. Control Questions⚖️ Type 1 vs Type 2 HypervisorsType 1: Higher performance, used in Servers/Clouds.Type 2: Easier to use, used for Desktop testing/Learning.📜 GNU GPL ConceptThe General Public License ensures 4 freedoms:Run the program.Study the code.Modify the code.Redistribute (Original or Modified).🤖 Android & Linux RelationshipAndroid uses the Linux Kernel for core hardware management (drivers, memory, process control) but has its own UI and runtime (ART).⌨️ Changing Boot Mode (CLI vs GUI)Bash# Switch to Text Mode (Multi-user)
+sudo apt update
+sudo apt install kde-standard   # або повна версія
+sudo apt install kde-full
+
+
+Перезавантаження системи або дисплейного менеджера після встановлення.
+
+2.5 Графічні інтерфейси Linux (варіант 15)
+Інтерфейс	Характеристика
+Xfce	Легке, швидке, стабільне; класичний інтерфейс; для слабких ПК; простота та швидкодія.
+FVWM	Дуже легкий, гнучкий; налаштовується через конфіг. файли; мінімалістичний; для досвідчених користувачів.
+Контрольні запитання
+
+Порівняння гіпервізорів типу 1 та 2
+
+Type 1: безпосередньо на апаратному забезпеченні, висока продуктивність, сервери.
+
+Type 2: поверх хост-ОС, простий у встановленні, тестування, ПК.
+
+GNU GPL
+
+Ліцензія вільного ПЗ; принцип copyleft; забезпечує свободу запуску, вивчення, зміни та поширення коду.
+
+Відкрите ПЗ
+
+Вихідний код відкритий; можна модифікувати та поширювати; прозорість та безпека.
+
+Дистрибутив Linux
+
+Комплект ядра Linux, системних утиліт, пакетів і прикладних програм.
+
+Задачі адміністрування в Linux
+
+Керування користувачами та правами; файлові системи; мережа; процеси; скрипти; безпека; серверні сервіси.
+
+Зв’язок Android і Linux
+
+Android базується на ядрі Linux, але має власну платформу та інтерфейс.
+
+Embedded Linux
+
+Малий розмір, стабільність, підтримка різного апаратного забезпечення; використання: маршрутизатори, смарт-ТВ, автомобільні системи, IoT.
+
+Зміна типу завантаження Linux
+
+Текстовий режим CLI (рівень 3):
+
 sudo systemctl set-default multi-user.target
 
-# Switch to Graphical Mode
+
+Графічний режим GUI (рівень 5):
+
 sudo systemctl set-default graphical.target
-✅ ConclusionIn this lab, I explored virtualization principles and the Linux ecosystem. I learned the difference between Type 1 and Type 2 hypervisors, studied the Hyper-V architecture, and practiced the deployment process in VirtualBox. Understanding open-source licensing (GPL) and the variety of Desktop Environments (Xfce, KDE) provides a solid foundation for further Linux system administration.
+
+
+CLI: точне керування, висока продуктивність.
+
+GUI: зручний для початківців, робота з графікою.
+
+Висновок (англійською)
+
+Conclusion
+In this laboratory work, the concept of virtualization and the operation of virtual machines were studied. The role of hypervisors in creating and managing virtual environments was explored, along with distinctions between Type 1 and Type 2 hypervisors and their respective applications.
+
+The architecture and features of the Linux operating system were examined, including its open-source model and GNU GPL licensing. Insights were gained into Linux distributions, graphical and text-based interfaces, and system administration tasks.
+
+The deployment of Linux in a VirtualBox environment was analyzed, focusing on text-mode installation and subsequent configuration of graphical shells. Various desktop environments were reviewed according to hardware resources.
+
+The acquired knowledge provides a solid foundation for practical use of Linux, virtualization, and administration of modern operating systems.
